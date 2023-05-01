@@ -23,13 +23,13 @@ pipeline {
         stage('Check Commit Message') {
             steps {
                 script {
-                    // Compare the retrieved commit message with the desired string 'TEST-123'
-                    if (GIT_COMMIT_MSG == 'TEST-123') {
-                        echo "Commit message is 'TEST-123', proceeding with the pipeline"
+                    // Check if the retrieved commit message contains the string 'TEST-123'
+                    if (GIT_COMMIT_MSG.contains('TEST-123')) {
+                        echo "Commit message contains 'TEST-123', proceeding with the pipeline"
                     } else {
-                        // If the commit message does not match 'TEST-123', abort the pipeline
+                        // If the commit message does not contain 'TEST-123', abort the pipeline
                         currentBuild.result = 'ABORTED'
-                        error "Commit message is not 'TEST-123', aborting the pipeline"
+                        error "Commit message does not contain 'TEST-123', aborting the pipeline"
                     }
                 }
             }
