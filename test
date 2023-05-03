@@ -1,0 +1,1 @@
+triggers { GenericTrigger( genericVariables: [ [key: 'changed_files', value: '$.head_commit["added","modified"][*]', defaultValue: 'none'], [key: 'branch', value: '$.ref'] ], regexpFilterExpression: 'refs/heads/(dev|develop|development|auto-trigger) .*jenkins/.*', regexpFilterText: '$branch $changed_files', token: "topics" ) }
